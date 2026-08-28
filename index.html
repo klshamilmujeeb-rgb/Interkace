@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<script>
+(function() {
+  try {
+    var _fetch = window.fetch;
+    Object.defineProperty(window, 'fetch', {
+      get: function() { return _fetch; },
+      set: function(val) { _fetch = val; },
+      configurable: true,
+      enumerable: true
+    });
+  } catch (e) {}
+})();
+</script>
+    
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ED4D0C" />
+
+    <title>Interkace Studio</title>
+    <meta name="description" content="Interkace Studio is a web design & digital experience studio for small and local businesses. Storytelling-driven, high-quality custom websites delivered in 10 days." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://Interkace Studio.com/" />
+    <meta property="og:title" content="Interkace Studio | High-Quality Websites Delivered in 10 Days" />
+    <meta property="og:description" content="High-quality, thoughtful websites at a good price. Delivered in 10 days for small and local businesses." />
+    <meta property="og:image" content="https://Interkace Studio.com/og-image.png" />
+    <meta property="og:site_name" content="Interkace Studio" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://Interkace Studio.com/" />
+    <meta name="twitter:title" content="Interkace Studio | High-Quality Websites Delivered in 10 Days" />
+    <meta name="twitter:description" content="High-quality, thoughtful websites at a good price. Delivered in 10 days for small and local businesses." />
+    <meta name="twitter:image" content="https://Interkace Studio.com/og-image.png" />
+
+    <!-- SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="web design, website design, digital experience studio, small business website, local business web design, 10-day website, Interkace Studio" />
+    <meta name="author" content="Interkace Studio" />
+    <link rel="canonical" href="https://Interkace Studio.com/" />
+
+    <!-- Favicon Declarations -->
+    <link rel="icon" type="image/x-icon" href="/assets/brand/favicon.ico?v=2026" />
+    <link rel="shortcut icon" href="/assets/brand/favicon.ico?v=2026" />
+    <link rel="apple-touch-icon" href="/assets/brand/favicon.png" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Interkace Studio",
+      "url": "https://Interkace Studio.com",
+      "description": "Interkace Studio is a web design & digital experience studio for small and local businesses. Storytelling-driven, high-quality custom websites delivered in 10 days.",
+      "serviceType": "Web Design & Digital Experiences",
+      "areaServed": "Worldwide",
+      "priceRange": "10-Day Sprint",
+      "sameAs": ["https://www.linkedin.com/company/Interkace Studio/"]
+    }
+    </script>
+      <script src="/scripts/libs/gsap.js"></script>
+  <script src="/scripts/libs/scrolltrigger.js"></script>
+  <script src="/scripts/libs/SplitText.min.js"></script>
+  <script src="/scripts/libs/matter.min.js"></script>
+    <script type="module" crossorigin src="/assets/core/index.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/core/rolldown-runtime.js">
+    <link rel="modulepreload" crossorigin href="/assets/core/vendor-react.js">
+    <link rel="stylesheet" crossorigin href="/assets/core/index.css">
+  <link rel="stylesheet" href="/styles/mwg-style.css">
+  
+<style>
+  * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+  html, body {
+    background-color: #000000 !important;
+    margin: 0;
+    padding: 0;
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+  ::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+</style>
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/gabriel-scroll.css" />
+  <script src="/scripts/shader-transition.js?v=2026_orange_morph"></script>
+</head>
+  <body>
+    <div id="root"></div>
+      
+    
+    <script>
+  // High-performance scroll & iframe pointer-events smoother + Chatbot Scroll Safeguard
+  (function() {
+    var isScrollingTimer = null;
+    var iframes = null;
+
+    function getIframes() {
+      if (!iframes || iframes.length === 0) {
+        iframes = document.querySelectorAll('iframe:not([data-interactive="true"])');
+      }
+      return iframes;
+    }
+
+    function onScrollStart() {
+      var frames = getIframes();
+      for (var i = 0; i < frames.length; i++) {
+        frames[i].style.pointerEvents = 'none';
+      }
+      clearTimeout(isScrollingTimer);
+      isScrollingTimer = setTimeout(function() {
+        var frames = getIframes();
+        for (var i = 0; i < frames.length; i++) {
+          frames[i].style.pointerEvents = 'auto';
+        }
+      }, 100);
+    }
+
+    window.addEventListener('wheel', onScrollStart, { passive: true });
+    window.addEventListener('scroll', onScrollStart, { passive: true });
+    window.addEventListener('touchmove', onScrollStart, { passive: true });
+
+    // Chatbot click scroll-preserver: Never allow clicking chatbot to jump/reset scroll to top!
+    document.addEventListener('click', function(e) {
+      var inChat = e.target && e.target.closest && (
+        e.target.closest('#webbi-root') || 
+        e.target.closest('.wc-floating-button') || 
+        e.target.closest('.wc-chat-panel') ||
+        e.target.closest('button[aria-label*="chat"]')
+      );
+      if (inChat) {
+        var currentScroll = window.__lenis ? window.__lenis.scroll : window.scrollY;
+        var restoreScroll = function() {
+          if (window.__lenis && Math.abs(window.__lenis.scroll - currentScroll) > 10) {
+            window.__lenis.scrollTo(currentScroll, { immediate: true });
+          } else if (Math.abs(window.scrollY - currentScroll) > 10) {
+            window.scrollTo(0, currentScroll);
+          }
+        };
+        for (var t = 10; t <= 500; t += 30) {
+          setTimeout(restoreScroll, t);
+        }
+      }
+    }, true);
+  })();
+</script>
+  
+  <script src="/scripts/whatsapp-eye-button.js"></script>
+  <script src="/scripts/gabriel-scroll.js"></script>
+</body>
+</html>

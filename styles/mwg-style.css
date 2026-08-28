@@ -1,0 +1,386 @@
+
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+.just-another-hand-regular {
+  font-family: "Just Another Hand", cursive !important;
+  font-weight: 400 !important;
+  font-style: normal !important;
+}
+
+/* Enhanced body & cursive scaling */
+
+/* Master Font Family Imports */
+
+/* Global Master Typography System */
+:root {
+  --font-heading: 'Teko', sans-serif;
+  --font-body: 'Ubuntu', sans-serif;
+}
+
+:root {
+  --mwg-bg: #FFFBCE;
+  --mwg-text: #2F0D01;
+  --mwg-white: #FFFBCE;
+  --mwg-yellow: #ED4D0C;
+  --mwg-green: #2F0D01;
+  --mwg-blue: #ED4D0C;
+  --mwg-light-grey: #FFFBCE;
+  --mwg-radius-l: 26px;
+  --grid-margin: 20px;
+  --grid-gutter: 20px;
+  --scrollbar-width: 0px;
+}
+
+/* Flex Utilities */
+.f { display: flex; }
+.f-space { justify-content: space-between; }
+.f-center { align-items: center; justify-content: center; }
+.pr { position: relative; }
+.pa { position: absolute; }
+.pf { position: fixed; }
+
+/* 3D ROTATING CIRCULAR CARDS SECTION - ULTRA BOLD & PUNCHY */
+.h-cards {
+  margin: 0;
+  color: #2F0D01;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  background-color: transparent;
+  font-family: "Teko", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.h-cards .pin-height {
+  height: 180vh;
+}
+
+.h-cards .container {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #FFFBCE;
+}
+
+.h-cards .circles {
+  opacity: 0;
+  position: relative;
+  width: 3675px;
+  aspect-ratio: 1;
+  margin: 50vh 0 0 calc(-1 * (3675px - 100vw) / 2);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.h-cards .circle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  transform-origin: center center;
+}
+
+.h-cards .circle.on {
+  visibility: visible;
+}
+
+.h-cards .media {
+  width: 100%;
+  max-width: 345px;
+  aspect-ratio: 0.84;
+  border-radius: var(--mwg-radius-l);
+  margin: 0 auto;
+  transform: translate(0, -54%);
+  flex-direction: column;
+  padding: 34px 24px 32px;
+  position: relative;
+  box-shadow: 0 24px 50px rgba(47, 13, 1, 0.3), 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.h-cards .media p {
+  padding: 0 10px;
+  font-size: 16.5px;
+  line-height: 1.45;
+  margin: 0;
+  font-weight: 700;
+  color: #FFFBCE !important;
+  z-index: 2;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.h-cards .m1 { background: #001588; box-shadow: 0 24px 50px rgba(0, 21, 136, 0.4), 0 4px 16px rgba(0, 0, 0, 0.15); }
+.h-cards .m2 { background: #2092e9; box-shadow: 0 24px 50px rgba(32, 146, 233, 0.4), 0 4px 16px rgba(0, 0, 0, 0.15); }
+.h-cards .m3 { background: #001588; box-shadow: 0 24px 50px rgba(0, 21, 136, 0.4), 0 4px 16px rgba(0, 0, 0, 0.15); }
+.h-cards .m4 { background: #2092e9; box-shadow: 0 24px 50px rgba(32, 146, 233, 0.4), 0 4px 16px rgba(0, 0, 0, 0.15); }
+
+.h-cards span {
+  font-size: clamp(80px, 12vw, 130px);
+  opacity: 0.2;
+  line-height: 1;
+  position: absolute;
+  bottom: 26%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-weight: 900;
+  color: #FFFBCE;
+  pointer-events: none;
+  font-family: "Teko", cursive, sans-serif;
+}
+
+.h-cards img.c {
+  width: 175px;
+  height: auto;
+  max-height: 72px;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Tablet Responsive */
+@media (max-width: 900px) {
+  .h-cards .pin-height {
+    height: 190vh;
+  }
+  .h-cards .circles {
+    width: 2800px;
+    margin: 50vh 0 0 calc(-1 * (2800px - 100vw) / 2);
+  }
+  .h-cards .media {
+    max-width: 310px;
+    padding: 30px 20px 28px;
+  }
+  .h-cards .media p {
+  padding: 0 10px;
+  font-size: 16.5px;
+  line-height: 1.45;
+  margin: 0;
+  font-weight: 700;
+  color: #FFFBCE !important;
+  z-index: 2;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: "Teko", -apple-system, sans-serif;
+}
+  .h-cards span {
+  font-size: clamp(70px, 10vw, 110px);
+  opacity: 0.2;
+  line-height: 1;
+  position: absolute;
+  bottom: 26%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-weight: 900;
+  color: #FFFBCE;
+  pointer-events: none;
+  font-family: "Teko", cursive, sans-serif;
+}
+  .h-cards img.c {
+  width: 175px;
+  height: auto;
+  max-height: 72px;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  opacity: 1;
+  z-index: 2;
+}
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+  .h-cards .pin-height {
+    height: 170vh;
+  }
+  .h-cards .circles {
+    width: 2200px;
+    margin: 50vh 0 0 calc(-1 * (2200px - 100vw) / 2);
+  }
+  .h-cards .media {
+    max-width: 285px;
+    padding: 26px 16px 24px;
+    border-radius: 22px;
+    aspect-ratio: 0.82;
+  }
+  .h-cards .media p {
+  padding: 0 10px;
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+  font-weight: 700;
+  color: #FFFBCE !important;
+  z-index: 2;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: "Teko", -apple-system, sans-serif;
+}
+  .h-cards span {
+  font-size: clamp(60px, 9vw, 90px);
+  opacity: 0.2;
+  line-height: 1;
+  position: absolute;
+  bottom: 26%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-weight: 900;
+  color: #FFFBCE;
+  pointer-events: none;
+  font-family: "Teko", cursive, sans-serif;
+}
+  .h-cards img.c {
+  width: 175px;
+  height: auto;
+  max-height: 72px;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  opacity: 1;
+  z-index: 2;
+}
+}
+
+
+/* Ultra-Smooth Performance & Rendering System */
+html {
+  scroll-behavior: smooth !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+body {
+  overscroll-behavior-y: none;
+  font-family: "Teko", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Headings & Display Elements */
+h1, h2, h3, h4, h5, h6, .hero-heading, .section-heading, .title-display {
+  font-family: "Teko", cursive, sans-serif !important;
+}
+
+/* GPU Accelerated Layers */
+.fluid-carousel-track,
+.draggable-carousel-track,
+.folder-cards-container,
+.video-card,
+.main-nav-pill,
+#whatsapp-eye-cta,
+.interkace-eye-btn-wrapper {
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform: translateZ(0) !important;
+}
+
+/* Optimize scroll performance */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.handwritten-body {
+  font-family: "Just Another Hand", cursive !important;
+  font-size: 1.4em !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.25 !important;
+}
+
+/* Ensure navbar, buttons, and footer maintain clean Teko typography */
+nav, nav a, nav button, .navbar, .navbar a, .cta-button, footer, footer a, footer p, button, a[href*="calendar"], a[href*="contact"], input, textarea, select, label {
+  font-family: 'Teko', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+
+/* Global Master Typography System */
+h1, h2, h3, h4, h5, h6,
+.hero-headline,
+.hero-title,
+.section-heading,
+.section-title,
+.display-title,
+.display-text,
+.major-title,
+.featured-statement,
+.card-title,
+[data-font="heading"] {
+  font-family: 'Teko', sans-serif !important;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-family: 'Teko', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+body,
+p,
+span,
+li,
+ul,
+ol,
+div,
+section,
+nav,
+footer,
+header,
+main,
+small,
+b,
+strong {
+  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+button,
+.btn,
+.cta,
+.cta-button,
+a,
+nav a,
+nav button,
+.navbar,
+.navbar a,
+input,
+textarea,
+select,
+label,
+footer a,
+footer p,
+.nav-link,
+.button-text,
+.caption,
+.subheading {
+  font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Scrollbar & Fullscreen Iframe Overrides */
+iframe[title="All Works Spiral Carousel"] {
+  width: 100vw !important;
+  height: 100vh !important;
+  border: none !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #000 !important;
+}
+
+html, body {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+body { margin: 0; padding: 0; }

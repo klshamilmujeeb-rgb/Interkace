@@ -1,0 +1,6 @@
+{
+  "name": "Interkace Studio",
+  "description": "Complete Interkace web design and digital experience studio website.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
