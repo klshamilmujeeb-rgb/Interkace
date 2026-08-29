@@ -21,31 +21,38 @@ npm run dev
 
 ---
 
-## 📂 Project Structure
+## 📂 Project Structure & Architecture
 
 ```
 .
-├── index.html             # Website entry point
-├── assets/                # Static assets, fonts, video, icons, & JS bundles
-│   ├── about-us/
-│   ├── all-works/
-│   ├── brand/
-│   ├── category-carousel/
-│   ├── core/              # React core bundle & custom cursor
-│   ├── hero/
-│   ├── process/
-│   └── tools/
-├── fonts/                 # Typography woff/woff2 fonts
-├── scripts/               # Shaders, Lenis smooth scroll, & external libraries
-│   ├── libs/              # GSAP, Matter.js, ScrollTrigger, SplitText
-│   ├── gabriel-scroll.js
-│   ├── shader-transition.js
-│   └── whatsapp-eye-button.js
-├── styles/                # CSS stylesheets
-│   ├── gabriel-scroll.css
-│   └── mwg-style.css
-├── package.json           # Node configuration & scripts
-└── vite.config.js         # Vite dev server configuration
+├── index.html                  # HTML entry point with meta tags & global font loads
+├── assets/                     # Static assets, media, fonts, icons, & JS modules
+│   ├── about-us/               # Interactive About Us section iframe & assets
+│   ├── all-works-carousel/     # 3D Spiral All Works showcase iframe & runtime
+│   ├── brand/                  # Logos, badges, favicons, OG images, noise texture
+│   ├── category-carousel/      # Specialized fluid category carousel iframe
+│   ├── core/                   # Main React application & core design components
+│   │   ├── index.js            # Main application bundle & interactive sections
+│   │   ├── index.css           # Core styling and animations
+│   │   ├── vendor-react.js     # React runtime
+│   │   ├── vendor-lenis.js     # Lenis smooth scroll engine
+│   │   ├── rolldown-runtime.js # Module loader
+│   │   └── CustomCursor.js     # Custom interactive cursor
+│   ├── folder-cards/           # 3D Confidential UI Folder Cards component & assets
+│   ├── hero/                   # Hero section assets (mockups, SVGs, crowd peep art)
+│   ├── process/                # 5-step interactive process videos and icons
+│   └── tools/                  # Marquee & tech stack icons
+├── fonts/                      # High-definition web fonts (LayGrotesk, NeueMachina, Lilita)
+├── scripts/                    # Smooth scroll, shader transitions, & external libs
+│   ├── libs/                   # GSAP, Matter.js, ScrollTrigger, SplitText
+│   ├── gabriel-scroll.js       # Pinned scroll mechanics
+│   ├── shader-transition.js    # Canvas shader effects
+│   └── whatsapp-eye-button.js  # Interactive floating eye contact widget
+├── styles/                     # Core stylesheets
+│   ├── gabriel-scroll.css      # Pinned scroll layout rules
+│   └── mwg-style.css           # Master typography and component utilities
+├── package.json                # Project configuration & scripts
+└── vite.config.js              # Vite server & build configuration
 ```
 
 ---
