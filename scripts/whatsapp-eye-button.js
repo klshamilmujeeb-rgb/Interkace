@@ -43,10 +43,19 @@
       user-select: none;
       -webkit-user-select: none;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
       box-sizing: border-box;
       padding: 0;
       overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, opacity 0.4s ease;
+    }
+
+    .antimetal-wa-btn.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
     .antimetal-wa-btn:hover {
@@ -215,15 +224,6 @@
         height: 42px !important;
         width: 164px !important;
         border-radius: 13px !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        transform: translateY(20px) !important;
-        transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      }
-      .antimetal-wa-btn.is-visible {
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        transform: translateY(0) !important;
       }
 
 
@@ -364,22 +364,18 @@
     window.addEventListener('mousemove', updatePupils, { passive: true });
 
 
-    // Scroll trigger for mobile
+    // Scroll trigger for all devices
     function checkScroll() {
-      if (window.innerWidth <= 768) {
-        var hero = document.getElementById('hero-section');
-        var threshold = window.innerHeight * 0.7; // default threshold
-        if (hero) {
-          threshold = hero.offsetHeight * 0.8;
-        }
-        
-        if (window.scrollY > threshold) {
-          btn.classList.add('is-visible');
-        } else {
-          btn.classList.remove('is-visible');
-        }
+      var hero = document.getElementById('hero-section');
+      var threshold = window.innerHeight * 0.7; // default threshold
+      if (hero) {
+        threshold = hero.offsetHeight * 0.8;
+      }
+      
+      if (window.scrollY > threshold) {
+        btn.classList.add('is-visible');
       } else {
-        btn.classList.add('is-visible'); // Always visible on desktop
+        btn.classList.remove('is-visible');
       }
     }
     
