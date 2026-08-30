@@ -69,7 +69,7 @@
     }
 
     #morph-path {
-      fill: #ea580c; /* Studio Vibrant Orange */
+      fill: #001588; /* Studio Deep Blue */
     }
 
     #preloader-content {
