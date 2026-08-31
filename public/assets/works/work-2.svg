@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+    <defs>
+      <linearGradient id="bg-1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0f131a"/>
+        <stop offset="50%" stop-color="#171d27"/>
+        <stop offset="100%" stop-color="#0b0e14"/>
+      </linearGradient>
+      <linearGradient id="glow-1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="cardSurface" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"/>
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0.02"/>
+      </linearGradient>
+      <pattern id="gridPattern" width="32" height="32" patternUnits="userSpaceOnUse">
+        <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+      </pattern>
+      <filter id="blurFilter" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="40"/>
+      </filter>
+    </defs>
+
+    <!-- Background Canvas -->
+    <rect width="100%" height="100%" fill="url(#bg-1)"/>
+    <rect width="100%" height="100%" fill="url(#gridPattern)"/>
+
+    <!-- Subtle Ambient Glow -->
+    <circle cx="700" cy="100" r="220" fill="url(#glow-1)" filter="url(#blurFilter)"/>
+    <circle cx="100" cy="400" r="180" fill="url(#glow-1)" filter="url(#blurFilter)"/>
+
+    <!-- Inner Mockup UI Frame -->
+    <g transform="translate(32, 28)">
+      <!-- Frame Backdrop -->
+      <rect width="736" height="444" rx="20" fill="url(#cardSurface)" stroke="rgba(255,255,255,0.12)" stroke-width="1.2"/>
+      
+      <!-- Top Browser/App Bar -->
+      <g transform="translate(24, 20)">
+        <circle cx="8" cy="8" r="5" fill="#ff5f56"/>
+        <circle cx="26" cy="8" r="5" fill="#ffbd2e"/>
+        <circle cx="44" cy="8" r="5" fill="#27c93f"/>
+        <rect x="70" y="0" width="240" height="16" rx="8" fill="rgba(255,255,255,0.06)"/>
+        <text x="82" y="12" font-family="'Ubuntu', 'Inter', sans-serif" font-size="9" fill="rgba(255,255,255,0.4)">azure-riviera-yachting.interkace.design</text>
+        
+        <!-- Category Badge -->
+        <rect x="530" y="-4" width="150" height="24" rx="12" fill="#38bdf8" fill-opacity="0.16" stroke="#38bdf8" stroke-opacity="0.4"/>
+        <text x="605" y="12" font-family="'Ubuntu', sans-serif" font-weight="600" font-size="10.5" fill="#38bdf8" text-anchor="middle" letter-spacing="0.5">TRAVEL AGENCY</text>
+      </g>
+
+      <!-- Main Visual Mockup Content -->
+      <g transform="translate(36, 72)">
+        <!-- Brand Wordmark / Header -->
+        <text x="0" y="32" font-family="'Ubuntu', sans-serif" font-weight="800" font-size="28" fill="#ffffff" letter-spacing="-0.5">Azure Riviera Yachting</text>
+        <text x="0" y="58" font-family="'Ubuntu', sans-serif" font-weight="500" font-size="13" fill="rgba(255,255,255,0.6)">Mediterranean Coast Charter & Ultra-Luxury Villas</text>
+
+        <!-- Big Hero Visual Block -->
+        <g transform="translate(0, 84)">
+          <rect width="664" height="200" rx="16" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+          
+          <!-- Decorative Graphic Lines & UI Preview -->
+          <path d="M 24 150 Q 180 40, 340 100 T 640 60" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+          <path d="M 24 165 Q 180 70, 340 125 T 640 85" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.4"/>
+          
+          <!-- Hero Headline Inside Mockup -->
+          <text x="32" y="54" font-family="'Ubuntu', sans-serif" font-weight="800" font-size="24" fill="#ffffff">Sail The Azure.</text>
+          <text x="32" y="80" font-family="'Ubuntu', sans-serif" font-weight="500" font-size="13" fill="rgba(255,255,255,0.7)">Mediterranean Private Fleet</text>
+          
+          <!-- Key Feature Badges -->
+          <g transform="translate(32, 115)">
+            
+              <g transform="translate(0, 0)">
+                <rect width="176" height="38" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+                <circle cx="16" cy="19" r="4" fill="#38bdf8"/>
+                <text x="30" y="23" font-family="'Ubuntu', sans-serif" font-weight="600" font-size="11.5" fill="#ffffff">120+ Yachts</text>
+              </g>
+            
+              <g transform="translate(190, 0)">
+                <rect width="176" height="38" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+                <circle cx="16" cy="19" r="4" fill="#38bdf8"/>
+                <text x="30" y="23" font-family="'Ubuntu', sans-serif" font-weight="600" font-size="11.5" fill="#ffffff">Monaco & Amalfi</text>
+              </g>
+            
+              <g transform="translate(380, 0)">
+                <rect width="176" height="38" rx="8" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.1)"/>
+                <circle cx="16" cy="19" r="4" fill="#38bdf8"/>
+                <text x="30" y="23" font-family="'Ubuntu', sans-serif" font-weight="600" font-size="11.5" fill="#ffffff">Concierge 24/7</text>
+              </g>
+            
+          </g>
+        </g>
+
+        <!-- Bottom Status Bar -->
+        <g transform="translate(0, 304)">
+          <text x="0" y="24" font-family="'Ubuntu', monospace" font-size="11" fill="rgba(255,255,255,0.35)" letter-spacing="1">PROJECT REF: 02 // TRAVEL-2</text>
+          <text x="664" y="24" font-family="'Ubuntu', sans-serif" font-weight="600" font-size="12" fill="#38bdf8" text-anchor="end">VIEW CASE STUDY ↗</text>
+        </g>
+      </g>
+    </g>
+  </svg>

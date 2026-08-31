@@ -24,6 +24,8 @@
   },
   "dependencies": {
     "acorn": "^8.18.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.1.1",
     "three": "^0.185.1"
   }
 }

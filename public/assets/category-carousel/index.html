@@ -2,6 +2,20 @@
 <html dir="ltr"><head>
 <script>
 (function() {
+  window.open = function(url) { 
+    if (url && (url.includes('konstantinfluence') || url.includes('http'))) return null;
+    return null; 
+  };
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a');
+    if (link) {
+      const href = link.getAttribute('href') || link.href || '';
+      if (href.includes('konstantinfluence')) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }
+  }, true);
   try {
     var _fetch = window.fetch;
     Object.defineProperty(window, 'fetch', {
@@ -137,123 +151,121 @@
     cursor: default !important;
   }
 
-  /* Mobile Carousel Navigation Controls — SaaS Pill Design */
-  @media (max-width: 768px) {
-    .carousel-nav-container,
-    div[style*="bottom: 36px"],
-    div[style*="bottom:36px"],
-    div[style*="bottom: 24px"],
-    div[style*="bottom:24px"],
-    div[style*="bottom: 20px"],
-    div[style*="bottom:20px"] {
-      position: absolute !important;
-      bottom: 20px !important;
-      left: 20px !important;
-      right: 20px !important;
-      display: flex !important;
-      justify-content: space-between !important;
-      align-items: center !important;
-      z-index: 10 !important;
-      pointer-events: auto !important;
-    }
+  /* Carousel Navigation Controls — SaaS Pill Design (Desktop & Mobile) */
+  .carousel-nav-container,
+  div[style*="bottom: 36px"],
+  div[style*="bottom:36px"],
+  div[style*="bottom: 24px"],
+  div[style*="bottom:24px"],
+  div[style*="bottom: 20px"],
+  div[style*="bottom:20px"] {
+    position: absolute !important;
+    bottom: 24px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    max-width: calc(100vw - 24px) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 6px 12px !important;
+    background: rgba(22, 22, 22, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 9999px !important;
+    z-index: 99999 !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    margin: 0 auto !important;
+    pointer-events: auto !important;
+  }
 
-    .carousel-nav-btn,
-    .carousel-prev-btn,
-    .carousel-next-btn,
-    button:not(.pc-dot):not([data-framer-name]) {
-      background-color: #FFFBCE !important;
-      background: #FFFBCE !important;
-      color: #000000 !important;
-      border: none !important;
-      border-radius: 9999px !important;
-      padding: 8px 16px !important;
-      font-family: 'Ubuntu', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-      font-size: 12.5px !important;
-      font-weight: 550 !important;
-      letter-spacing: -0.01em !important;
-      text-transform: none !important;
-      cursor: pointer !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      gap: 6px !important;
-      line-height: 1 !important;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
-      outline: none !important;
-      transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease, background-color 0.15s ease !important;
-      -webkit-tap-highlight-color: transparent !important;
-      user-select: none !important;
-      min-height: unset !important;
-      height: auto !important;
-    }
+  .carousel-nav-btn,
+  .carousel-prev-btn,
+  .carousel-next-btn,
+  button:not(.pc-dot):not([data-framer-name]) {
+    background-color: #FFFBCE !important;
+    background: #FFFBCE !important;
+    color: #000000 !important;
+    border: none !important;
+    border-radius: 9999px !important;
+    padding: 8px 16px !important;
+    font-family: 'Ubuntu', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-size: 12.5px !important;
+    font-weight: 550 !important;
+    letter-spacing: -0.01em !important;
+    text-transform: none !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    line-height: 1 !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+    outline: none !important;
+    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease, background-color 0.15s ease !important;
+    -webkit-tap-highlight-color: transparent !important;
+    user-select: none !important;
+    min-height: unset !important;
+    height: auto !important;
+  }
 
-    .carousel-nav-btn:hover,
-    .carousel-prev-btn:hover,
-    .carousel-next-btn:hover,
-    button:not(.pc-dot):not([data-framer-name]):hover {
-      opacity: 0.92 !important;
-      background: #FFFBCE !important;
-      color: #000000 !important;
-    }
+  .carousel-nav-btn:hover,
+  .carousel-prev-btn:hover,
+  .carousel-next-btn:hover,
+  button:not(.pc-dot):not([data-framer-name]):hover {
+    opacity: 0.92 !important;
+    background: #FFFBCE !important;
+    color: #000000 !important;
+  }
 
-    .carousel-nav-btn:active,
-    .carousel-prev-btn:active,
-    .carousel-next-btn:active,
-    button:not(.pc-dot):not([data-framer-name]):active {
-      transform: scale(0.96) !important;
-      opacity: 0.85 !important;
-    }
+  .carousel-nav-btn:active,
+  .carousel-prev-btn:active,
+  .carousel-next-btn:active,
+  button:not(.pc-dot):not([data-framer-name]):active {
+    transform: scale(0.96) !important;
+    opacity: 0.85 !important;
+  }
 
-    .carousel-dots-group,
-    div[aria-label="Carousel pagination"] {
-      display: flex !important;
-      gap: 6px !important;
-      align-items: center !important;
-      justify-content: center !important;
-    }
+  .carousel-dots-group,
+  div[aria-label="Carousel pagination"] {
+    display: flex !important;
+    gap: 6px !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
 
-    .pc-dot {
-      height: 6px !important;
-      width: 6px !important;
-      border-radius: 3px !important;
-      background: #ffffff !important;
-      opacity: 0.25 !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: 0 !important;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      cursor: pointer !important;
-    }
+  .pc-dot {
+    height: 6px !important;
+    width: 6px !important;
+    border-radius: 3px !important;
+    background: #ffffff !important;
+    opacity: 0.25 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+  }
 
-    .pc-dot[aria-current="true"] {
-      width: 16px !important;
-      height: 6px !important;
-      border-radius: 3px !important;
-      background: #FFFBCE !important;
-      opacity: 1 !important;
-    }
+  .pc-dot[aria-current="true"] {
+    width: 16px !important;
+    height: 6px !important;
+    border-radius: 3px !important;
+    background: #FFFBCE !important;
+    opacity: 1 !important;
   }
 </style>
 
 
 <script>
   (function() {
-    let autoTimer;
-    function initInfiniteAutoLoop() {
-      if (autoTimer) clearInterval(autoTimer);
-      autoTimer = setInterval(function() {
-        try {
-          const buttons = Array.from(document.querySelectorAll('button'));
-          const nextBtn = buttons.find(b => (b.innerText || b.textContent || '').includes('Next'));
-          if (nextBtn) {
-            nextBtn.click();
-          }
-        } catch(e){}
-      }, 3500);
-    }
-
     window.addEventListener('load', function() {
-      setTimeout(initInfiniteAutoLoop, 1500);
       window.dispatchEvent(new Event('resize'));
     });
   })();
@@ -266,7 +278,7 @@
     
     <!-- End of bodyStart -->
 	
-	<div id="main" data-framer-hydrate-v2="{&quot;routeId&quot;:&quot;augiA20Il&quot;,&quot;localeId&quot;:&quot;default&quot;,&quot;breakpoints&quot;:[{&quot;hash&quot;:&quot;72rtr7&quot;}]}" data-framer-ssr-released-at="2026-07-10T11:33:00.876Z" data-framer-page-optimized-at="2026-07-12T14:47:20.246Z" data-framer-generated-page="" bis_skin_checked="1"><!--$--><div data-framer-root="" class="framer-hIneP framer-72rtr7" style="min-height:100vh;width:auto" bis_skin_checked="1"><div class="framer-1buho1p" bis_skin_checked="1"><div class="framer-1w6atty-container" bis_skin_checked="1"><!--$--><div style="width:100%;height:100%;background:transparent;position:relative;overflow:hidden" bis_skin_checked="1"><canvas style="position: absolute; inset: 0px; width: 894px; height: 644px; cursor: grab;" data-engine="three.js r136" width="1341" height="966"></canvas><div class="carousel-nav-container" style="position:absolute;bottom:20px;left:20px;right:20px;display:flex;justify-content:space-between;align-items:center;z-index:10" bis_skin_checked="1"><button class="carousel-nav-btn carousel-prev-btn" style="background:#FFFBCE;border:none;border-radius:9999px;color:#000000;padding:8px 16px;font-family:'Ubuntu','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12.5px;font-weight:550;letter-spacing:-0.01em;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;line-height:1;box-shadow:0 1px 4px rgba(0,0,0,0.08)">← Previous</button><div class="carousel-dots-group" aria-label="Carousel pagination" role="group" style="display:flex;gap:6px;align-items:center;justify-content:center" bis_skin_checked="1"><button type="button" class="pc-dot" aria-label="Show card 1" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button><button type="button" class="pc-dot" aria-label="Show card 2" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button><button type="button" class="pc-dot" aria-label="Show card 3" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button><button type="button" class="pc-dot" aria-label="Show card 4" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button><button type="button" class="pc-dot" aria-label="Show card 5" style="appearance:none;border:0px;height:6px;width:16px;margin:0px;padding:0px;border-radius:3px;background:#FFFBCE;opacity:1;cursor:pointer;transition:0.35s" aria-current="true"></button><button type="button" class="pc-dot" aria-label="Show card 6" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button></div><button class="carousel-nav-btn carousel-next-btn" style="background:#FFFBCE;border:none;border-radius:9999px;color:#000000;padding:8px 16px;font-family:'Ubuntu','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12.5px;font-weight:550;letter-spacing:-0.01em;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;line-height:1;box-shadow:0 1px 4px rgba(0,0,0,0.08)">Next →</button></div></div><!--/$--></div></div></div><div id="overlay" bis_skin_checked="1"></div><!--/$--></div><script>(()=>{function u(){function n(t,e,i){let r=document.createElement("a");r.href=t,r.target=i,r.rel=e,document.body.appendChild(r),r.click(),r.remove()}function o(t){if(this.dataset.hydrated){this.removeEventListener("click",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");if(!e)return;if(/Mac|iPod|iPhone|iPad/u.test(navigator.userAgent)?t.metaKey:t.ctrlKey)return n(e,"","_blank");let r=this.getAttribute("rel")??"",c=this.getAttribute("target")??"";n(e,r,c)}function a(t){if(this.dataset.hydrated){this.removeEventListener("auxclick",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");e&&n(e,"","_blank")}function s(t){if(this.dataset.hydrated){this.removeEventListener("keydown",s);return}if(t.key!=="Enter")return;t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");if(!e)return;let i=this.getAttribute("rel")??"",r=this.getAttribute("target")??"";n(e,i,r)}document.querySelectorAll("[data-nested-link]").forEach(t=>{t instanceof HTMLElement&&(t.addEventListener("click",o),t.addEventListener("auxclick",a),t.addEventListener("keydown",s))})}return u})()()</script>
+	<div id="main" data-framer-hydrate-v2="{&quot;routeId&quot;:&quot;augiA20Il&quot;,&quot;localeId&quot;:&quot;default&quot;,&quot;breakpoints&quot;:[{&quot;hash&quot;:&quot;72rtr7&quot;}]}" data-framer-ssr-released-at="2026-07-10T11:33:00.876Z" data-framer-page-optimized-at="2026-07-12T14:47:20.246Z" data-framer-generated-page="" bis_skin_checked="1"><!--$--><div data-framer-root="" class="framer-hIneP framer-72rtr7" style="min-height:100vh;width:auto" bis_skin_checked="1"><div class="framer-1buho1p" bis_skin_checked="1"><div class="framer-1w6atty-container" bis_skin_checked="1"><!--$--><div style="width:100%;height:100%;background:transparent;position:relative;overflow:hidden" bis_skin_checked="1"><canvas style="position: absolute; inset: 0px; width: 894px; height: 644px; cursor: grab;" data-engine="three.js r136" width="1341" height="966"></canvas><div class="carousel-nav-container" style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:calc(100% - 40px);max-width:520px;display:flex;justify-content:space-between;align-items:center;z-index:10" bis_skin_checked="1"><button class="carousel-nav-btn carousel-prev-btn" style="background:#FFFBCE;border:none;border-radius:9999px;color:#000000;padding:8px 16px;font-family:'Ubuntu','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12.5px;font-weight:550;letter-spacing:-0.01em;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;line-height:1;box-shadow:0 1px 4px rgba(0,0,0,0.08)">← Previous</button><div class="carousel-dots-group" aria-label="Carousel pagination" role="group" style="display:flex;gap:6px;align-items:center;justify-content:center" bis_skin_checked="1"><button type="button" class="pc-dot" aria-label="Show card 1" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button><button type="button" class="pc-dot" aria-label="Show card 2" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button><button type="button" class="pc-dot" aria-label="Show card 3" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button><button type="button" class="pc-dot" aria-label="Show card 4" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button><button type="button" class="pc-dot" aria-label="Show card 5" style="appearance:none;border:0px;height:6px;width:16px;margin:0px;padding:0px;border-radius:3px;background:#FFFBCE;opacity:1;cursor:pointer;transition:0.35s" aria-current="true"></button><button type="button" class="pc-dot" aria-label="Show card 6" style="appearance:none;border:0px;height:6px;width:6px;margin:0px;padding:0px;border-radius:3px;background:#ffffff;opacity:0.25;cursor:pointer;transition:0.35s"></button></div><button class="carousel-nav-btn carousel-next-btn" style="background:#FFFBCE;border:none;border-radius:9999px;color:#000000;padding:8px 16px;font-family:'Ubuntu','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:12.5px;font-weight:550;letter-spacing:-0.01em;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;line-height:1;box-shadow:0 1px 4px rgba(0,0,0,0.08)">Next →</button></div></div><!--/$--></div></div></div><div id="overlay" bis_skin_checked="1"></div><!--/$--></div><script>(()=>{function u(){function n(t,e,i){let r=document.createElement("a");r.href=t,r.target=i,r.rel=e,document.body.appendChild(r),r.click(),r.remove()}function o(t){if(this.dataset.hydrated){this.removeEventListener("click",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");if(!e)return;if(/Mac|iPod|iPhone|iPad/u.test(navigator.userAgent)?t.metaKey:t.ctrlKey)return n(e,"","_blank");let r=this.getAttribute("rel")??"",c=this.getAttribute("target")??"";n(e,r,c)}function a(t){if(this.dataset.hydrated){this.removeEventListener("auxclick",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");e&&n(e,"","_blank")}function s(t){if(this.dataset.hydrated){this.removeEventListener("keydown",s);return}if(t.key!=="Enter")return;t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");if(!e)return;let i=this.getAttribute("rel")??"",r=this.getAttribute("target")??"";n(e,i,r)}document.querySelectorAll("[data-nested-link]").forEach(t=>{t instanceof HTMLElement&&(t.addEventListener("click",o),t.addEventListener("auxclick",a),t.addEventListener("keydown",s))})}return u})()()</script>
 	<script>!function(){var w="framer_variant";function u(a,r){let e=r.indexOf("#"),t=e===-1?r:r.substring(0,e),o=e===-1?"":r.substring(e),n=t.indexOf("?"),h=n===-1?t:t.substring(0,n),d=n===-1?"":t.substring(n),s=new URLSearchParams(d),m=new URLSearchParams(a);for(let[i,l]of m)s.has(i)||i!==w&&s.append(i,l);let c=s.toString();return c===""?t+o:h+"?"+c+o}var g='div#main a[href^="#"],div#main a[href^="/"],div#main a[href^="."]',f="div#main a[data-framer-preserve-params]",S=document.currentScript?.hasAttribute("data-preserve-internal-params");if(window.location.search&&!navigator.webdriver&&!/bot|-google|google-|yandex|ia_archiver|crawl|spider/iu.test(navigator.userAgent)){let a=document.querySelectorAll(S?`${g},${f}`:f);for(let r of a){let e=u(window.location.search,r.href);r.setAttribute("href",e)}}
 }()</script>
 	
@@ -280,4 +292,171 @@
     <!-- End of bodyEnd -->
 
 
+<script>
+  (function() {
+    let startX = 0, startY = 0;
+    let isDragging = false;
+    let isPointerDown = false;
+    const DRAG_THRESHOLD = 8;
+
+    function onStart(x, y) {
+      startX = x;
+      startY = y;
+      isDragging = false;
+      isPointerDown = true;
+    }
+
+    function onMove(x, y) {
+      if (!isPointerDown) return;
+      let dx = Math.abs(x - startX);
+      let dy = Math.abs(y - startY);
+      if (dx > DRAG_THRESHOLD || dy > DRAG_THRESHOLD) {
+        isDragging = true;
+      }
+    }
+
+    function onEnd() {
+      isPointerDown = false;
+    }
+
+    document.addEventListener('touchstart', function(e) {
+      if (e.touches && e.touches.length > 0) {
+        onStart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { capture: true, passive: true });
+
+    document.addEventListener('touchmove', function(e) {
+      if (e.touches && e.touches.length > 0) {
+        onMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { capture: true, passive: true });
+
+    document.addEventListener('touchend', onEnd, { capture: true, passive: true });
+    document.addEventListener('touchcancel', onEnd, { capture: true, passive: true });
+
+    document.addEventListener('pointerdown', function(e) {
+      onStart(e.clientX, e.clientY);
+    }, true);
+
+    document.addEventListener('pointermove', function(e) {
+      onMove(e.clientX, e.clientY);
+    }, true);
+
+    document.addEventListener('pointerup', onEnd, true);
+
+    document.addEventListener('click', function(e) {
+      if (isDragging) {
+        isDragging = false;
+        return;
+      }
+
+      let button = e.target.closest('button');
+      if (button) return;
+      let a = e.target.closest('a');
+      if (a && a.href && a.href.includes('framer.com')) return;
+      if (e.target.closest('[aria-label^="Show card"]') || 
+          e.target.closest('[aria-label="Carousel pagination"]') || 
+          e.target.closest('.carousel-nav-container') ||
+          e.target.closest('.carousel-nav-btn')) return;
+
+      let dx = Math.abs(e.clientX - startX);
+      let dy = Math.abs(e.clientY - startY);
+      if (dx > DRAG_THRESHOLD || dy > DRAG_THRESHOLD) return;
+
+      let clickedSlideStr = "";
+      if (a && a.getAttribute('aria-label')) {
+         let label = a.getAttribute('aria-label');
+         if (label.toLowerCase().includes('slide')) {
+             let m = label.match(/\d+/);
+             if (m) clickedSlideStr = "slide-" + m[0];
+         }
+      }
+
+      if (!clickedSlideStr) {
+        let activeDot = document.querySelector('.pc-dot[aria-current="true"]') || document.querySelector('.pc-dot[style*="16px"]');
+        let activeIndex = 1;
+        if (activeDot) {
+          let aria = activeDot.getAttribute('aria-label') || '';
+          let m = aria.match(/\d+/);
+          if (m) activeIndex = parseInt(m[0], 10);
+        }
+        let clickX = e.clientX || window.innerWidth / 2;
+        if (clickX < window.innerWidth * 0.32) {
+          activeIndex = ((activeIndex - 2 + 6) % 6) + 1;
+        } else if (clickX > window.innerWidth * 0.68) {
+          activeIndex = (activeIndex % 6) + 1;
+        }
+        clickedSlideStr = "slide-" + activeIndex;
+      }
+
+      if (clickedSlideStr) {
+         e.preventDefault();
+         e.stopPropagation();
+         
+         const categoriesMap = [
+           { slug: 'travel-agency', name: 'Travel Agency' },
+           { slug: 'restaurant', name: 'Restaurant' },
+           { slug: 'salon', name: 'Salon' },
+           { slug: 'clothing', name: 'Clothing' },
+           { slug: 'mobile-apps', name: 'Mobile Apps' },
+           { slug: 'portfolio', name: 'Portfolio' }
+         ];
+
+         let m = clickedSlideStr.match(/slide-(\d+)/i);
+         let sNum = m ? parseInt(m[1], 10) : 1;
+         let catIndex = ((sNum - 1) % 6);
+         let selectedCat = categoriesMap[catIndex] || categoriesMap[0];
+
+         let isMobile = window.innerWidth <= 768;
+         let cardW = isMobile ? Math.min(320, window.innerWidth * 0.84) : Math.min(460, window.innerWidth * 0.36);
+         let cardH = cardW * 0.625;
+
+         let rect = null;
+         let imageUrl = '';
+         try {
+           if (e.target) {
+             let targetEl = e.target.closest('a, img');
+             if (targetEl) {
+               const bcr = targetEl.getBoundingClientRect();
+               if (bcr.width > 50 && bcr.width < window.innerWidth * 0.85 && bcr.height > 50 && bcr.height < window.innerHeight * 0.85) {
+                 rect = { top: bcr.top, left: bcr.left, width: bcr.width, height: bcr.height };
+               }
+             }
+             
+             let el = e.target;
+             while(el && el !== document.body) {
+                let style = window.getComputedStyle(el);
+                if (style.backgroundImage && style.backgroundImage !== 'none') {
+                   imageUrl = style.backgroundImage.replace(/^url\(['"]?([^'"]+)['"]?\)/, '$1');
+                   break;
+                }
+                if (el.tagName === 'IMG') {
+                   imageUrl = el.src;
+                   break;
+                }
+                el = el.parentElement;
+             }
+           }
+         } catch(err) {}
+
+         if (!rect) {
+           let clickX = e.clientX || window.innerWidth / 2;
+           let clickY = e.clientY || window.innerHeight / 2;
+           let left = Math.max(16, Math.min(window.innerWidth - cardW - 16, clickX - cardW / 2));
+           let top = Math.max(16, Math.min(window.innerHeight - cardH - 16, clickY - cardH / 2));
+           rect = { top: top, left: left, width: cardW, height: cardH };
+         }
+
+         window.parent.postMessage({ 
+           type: 'CATEGORY_CLICK', 
+           categorySlug: selectedCat.slug, 
+           categoryName: selectedCat.name,
+           slideIndex: sNum,
+           rect, 
+           imageUrl 
+         }, '*');
+      }
+    }, true);
+  })();
+</script>
 </body></html>

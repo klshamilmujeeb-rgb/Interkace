@@ -12,14 +12,14 @@
 }
 
 :root {
-  --color-bg-primary: #001588;
-  --color-bg-secondary: #001588;
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #000000;
 }
 
 /* Master Font System */
 body {
   color: var(--color-text-primary);
-  background-color: #001588;
+  background-color: #000000;
   -webkit-font-smoothing: antialiased;
   font-family: 'Ubuntu', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   font-size: 14px;

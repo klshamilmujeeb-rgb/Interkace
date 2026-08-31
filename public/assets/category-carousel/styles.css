@@ -226,100 +226,113 @@ html, body, #main, [data-framer-root] {
   pointer-events: none !important;
 }
 
-/* Mobile Carousel Navigation Controls — SaaS Pill Design */
-@media (max-width: 768px) {
-  .carousel-nav-container,
-  div[style*="bottom: 36px"],
-  div[style*="bottom:36px"],
-  div[style*="bottom: 24px"],
-  div[style*="bottom:24px"],
-  div[style*="bottom: 20px"],
-  div[style*="bottom:20px"] {
-    position: absolute !important;
-    bottom: 20px !important;
-    left: 20px !important;
-    right: 20px !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    z-index: 10 !important;
-    pointer-events: auto !important;
-  }
+/* Carousel Navigation Controls — SaaS Pill Design (Desktop & Mobile) */
+.carousel-nav-container,
+div[style*="bottom: 36px"],
+div[style*="bottom:36px"],
+div[style*="bottom: 24px"],
+div[style*="bottom:24px"],
+div[style*="bottom: 20px"],
+div[style*="bottom:20px"] {
+  position: absolute !important;
+  bottom: 24px !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+  width: auto !important;
+  max-width: calc(100vw - 24px) !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 6px 12px !important;
+  background: rgba(22, 22, 22, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 9999px !important;
+  z-index: 99999 !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+  margin: 0 auto !important;
+  pointer-events: auto !important;
+}
 
-  .carousel-nav-btn,
-  .carousel-prev-btn,
-  .carousel-next-btn,
-  button:not(.pc-dot):not([data-framer-name]) {
-    background-color: #FFFBCE !important;
-    background: #FFFBCE !important;
-    color: #000000 !important;
-    border: none !important;
-    border-radius: 9999px !important;
-    padding: 8px 16px !important;
-    font-family: 'Ubuntu', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-    font-size: 12.5px !important;
-    font-weight: 550 !important;
-    letter-spacing: -0.01em !important;
-    text-transform: none !important;
-    cursor: pointer !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-    line-height: 1 !important;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
-    outline: none !important;
-    transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease, background-color 0.15s ease !important;
-    -webkit-tap-highlight-color: transparent !important;
-    user-select: none !important;
-    min-height: unset !important;
-    height: auto !important;
-  }
+.carousel-nav-btn,
+.carousel-prev-btn,
+.carousel-next-btn,
+button:not(.pc-dot):not([data-framer-name]) {
+  background-color: #FFFBCE !important;
+  background: #FFFBCE !important;
+  color: #000000 !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  padding: 8px 16px !important;
+  font-family: 'Ubuntu', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 550 !important;
+  letter-spacing: -0.01em !important;
+  text-transform: none !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  line-height: 1 !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+  outline: none !important;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease, background-color 0.15s ease !important;
+  -webkit-tap-highlight-color: transparent !important;
+  user-select: none !important;
+  min-height: unset !important;
+  height: auto !important;
+}
 
-  .carousel-nav-btn:hover,
-  .carousel-prev-btn:hover,
-  .carousel-next-btn:hover,
-  button:not(.pc-dot):not([data-framer-name]):hover {
-    opacity: 0.92 !important;
-    background: #FFFBCE !important;
-    color: #000000 !important;
-  }
+.carousel-nav-btn:hover,
+.carousel-prev-btn:hover,
+.carousel-next-btn:hover,
+button:not(.pc-dot):not([data-framer-name]):hover {
+  opacity: 0.92 !important;
+  background: #FFFBCE !important;
+  color: #000000 !important;
+}
 
-  .carousel-nav-btn:active,
-  .carousel-prev-btn:active,
-  .carousel-next-btn:active,
-  button:not(.pc-dot):not([data-framer-name]):active {
-    transform: scale(0.96) !important;
-    opacity: 0.85 !important;
-  }
+.carousel-nav-btn:active,
+.carousel-prev-btn:active,
+.carousel-next-btn:active,
+button:not(.pc-dot):not([data-framer-name]):active {
+  transform: scale(0.96) !important;
+  opacity: 0.85 !important;
+}
 
-  .carousel-dots-group,
-  div[aria-label="Carousel pagination"] {
-    display: flex !important;
-    gap: 6px !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
+.carousel-dots-group,
+div[aria-label="Carousel pagination"] {
+  display: flex !important;
+  gap: 6px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
 
-  .pc-dot {
-    height: 6px !important;
-    width: 6px !important;
-    border-radius: 3px !important;
-    background: #ffffff !important;
-    opacity: 0.25 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    cursor: pointer !important;
-  }
+.pc-dot {
+  height: 6px !important;
+  width: 6px !important;
+  border-radius: 3px !important;
+  background: #ffffff !important;
+  opacity: 0.25 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
 
-  .pc-dot[aria-current="true"] {
-    width: 16px !important;
-    height: 6px !important;
-    border-radius: 3px !important;
-    background: #FFFBCE !important;
-    opacity: 1 !important;
-  }
+.pc-dot[aria-current="true"] {
+  width: 16px !important;
+  height: 6px !important;
+  border-radius: 3px !important;
+  background: #FFFBCE !important;
+  opacity: 1 !important;
 }
 

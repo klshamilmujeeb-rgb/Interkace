@@ -84,6 +84,40 @@
     visibility: hidden !important;
     pointer-events: none !important;
   }
+
+  /* Carousel Navigation Controls — Perfectly Centered Bottom Pill Bar */
+  .carousel-nav-container,
+  div[style*="bottom: 36px"],
+  div[style*="bottom:36px"],
+  div[style*="bottom: 24px"],
+  div[style*="bottom:24px"],
+  div[style*="bottom: 20px"],
+  div[style*="bottom:20px"] {
+    position: absolute !important;
+    bottom: 24px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    max-width: calc(100vw - 24px) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 6px 12px !important;
+    background: rgba(22, 22, 22, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 9999px !important;
+    z-index: 99999 !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    margin: 0 auto !important;
+    pointer-events: auto !important;
+  }
 </style>
 
 </head>
@@ -110,36 +144,94 @@
 
 <script id="project-click-interceptor">
   (function() {
-    let startX = 0, startY = 0;
+    let startX = 0;
+    let startY = 0;
+    let isDragging = false;
+    let isPointerDown = false;
+    const DRAG_THRESHOLD = 8; // pixels
+
+    function onStart(x, y) {
+      startX = x;
+      startY = y;
+      isDragging = false;
+      isPointerDown = true;
+    }
+
+    function onMove(x, y) {
+      if (!isPointerDown) return;
+      let dx = Math.abs(x - startX);
+      let dy = Math.abs(y - startY);
+      if (dx > DRAG_THRESHOLD || dy > DRAG_THRESHOLD) {
+        isDragging = true;
+      }
+    }
+
+    function onEnd() {
+      isPointerDown = false;
+    }
+
+    // Touch events for mobile drag/swipe detection
+    document.addEventListener('touchstart', function(e) {
+      if (e.touches && e.touches.length > 0) {
+        onStart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { capture: true, passive: true });
+
+    document.addEventListener('touchmove', function(e) {
+      if (e.touches && e.touches.length > 0) {
+        onMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { capture: true, passive: true });
+
+    document.addEventListener('touchend', onEnd, { capture: true, passive: true });
+    document.addEventListener('touchcancel', onEnd, { capture: true, passive: true });
+
+    // Pointer & Mouse events
     document.addEventListener('pointerdown', function(e) {
-      startX = e.clientX;
-      startY = e.clientY;
+      onStart(e.clientX, e.clientY);
     }, true);
 
+    document.addEventListener('pointermove', function(e) {
+      onMove(e.clientX, e.clientY);
+    }, true);
+
+    document.addEventListener('pointerup', onEnd, true);
+
     document.addEventListener('click', function(e) {
+      // If user was swiping or dragging, cancel navigation!
+      if (isDragging) {
+        isDragging = false;
+        return;
+      }
+
+      // Ignore buttons or control pagination
+      let button = e.target.closest('button');
+      if (button) return;
       let a = e.target.closest('a');
       if (a && a.href && a.href.includes('framer.com')) return;
-      if (e.target.closest('[aria-label^="Show card"]') || e.target.closest('[aria-label="Carousel pagination"]')) return;
+      if (e.target.closest('[aria-label^="Show card"]') || 
+          e.target.closest('[aria-label="Carousel pagination"]') || 
+          e.target.closest('.carousel-nav-container') ||
+          e.target.closest('.carousel-nav-btn')) return;
 
       let dx = Math.abs(e.clientX - startX);
       let dy = Math.abs(e.clientY - startY);
-      if (dx > 15 || dy > 15) return;
+      if (dx > DRAG_THRESHOLD || dy > DRAG_THRESHOLD) return;
 
       let clickedSlideStr = "";
       
       if (a && a.getAttribute('aria-label')) {
          let label = a.getAttribute('aria-label');
          if (label.toLowerCase().includes('slide')) {
-             clickedSlideStr = label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-         } else {
-             clickedSlideStr = label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+             let m = label.match(/\d+/);
+             if (m) clickedSlideStr = "slide-" + m[0];
          }
       }
 
       if (!clickedSlideStr) {
         let img = e.target.closest('img');
         if (img && img.src && img.src.includes('slide-')) {
-           let m = img.src.match(/slide-(d+)/);
+           let m = img.src.match(/slide-(\d+)/i);
            if (m) clickedSlideStr = "slide-" + m[1];
         }
       }
@@ -148,28 +240,48 @@
          try {
            let style = window.getComputedStyle(e.target);
            if (style.backgroundImage && style.backgroundImage.includes('slide-')) {
-              let m = style.backgroundImage.match(/slide-(d+)/);
+              let m = style.backgroundImage.match(/slide-(\d+)/i);
               if (m) clickedSlideStr = "slide-" + m[1];
            }
          } catch(err) {}
       }
       
-      // Fallback: If they clicked a div with a framer class, assume they clicked the active slide or slide-1
-      if (!clickedSlideStr && e.target.closest('div[class^="framer-"]')) {
-         // Not empty space, maybe just go to a default slide
-         clickedSlideStr = "work-landing";
+      if (!clickedSlideStr) {
+        let activeDot = document.querySelector('.pc-dot[aria-current="true"]') || document.querySelector('.pc-dot[style*="16px"]');
+        let activeIndex = 1;
+        if (activeDot) {
+          let aria = activeDot.getAttribute('aria-label') || '';
+          let m = aria.match(/\d+/);
+          if (m) activeIndex = parseInt(m[0], 10);
+        }
+        let clickX = e.clientX || window.innerWidth / 2;
+        if (clickX < window.innerWidth * 0.32) {
+          activeIndex = ((activeIndex - 2 + 9) % 9) + 1;
+        } else if (clickX > window.innerWidth * 0.68) {
+          activeIndex = (activeIndex % 9) + 1;
+        }
+        clickedSlideStr = "slide-" + activeIndex;
       }
 
       if (clickedSlideStr) {
          e.preventDefault();
          e.stopPropagation();
          
+         let isMobile = window.innerWidth <= 768;
+         let cardW = isMobile ? Math.min(320, window.innerWidth * 0.84) : Math.min(460, window.innerWidth * 0.36);
+         let cardH = cardW * 0.625;
+
          let rect = null;
          let imageUrl = '';
          try {
            if (e.target) {
-             const bcr = e.target.getBoundingClientRect();
-             rect = { top: bcr.top, left: bcr.left, width: bcr.width, height: bcr.height };
+             let targetEl = e.target.closest('a, img');
+             if (targetEl) {
+               const bcr = targetEl.getBoundingClientRect();
+               if (bcr.width > 50 && bcr.width < window.innerWidth * 0.85 && bcr.height > 50 && bcr.height < window.innerHeight * 0.85) {
+                 rect = { top: bcr.top, left: bcr.left, width: bcr.width, height: bcr.height };
+               }
+             }
              
              let el = e.target;
              while(el && el !== document.body) {
@@ -186,8 +298,22 @@
              }
            }
          } catch(err) {}
+
+         if (!rect) {
+           let clickX = e.clientX || window.innerWidth / 2;
+           let clickY = e.clientY || window.innerHeight / 2;
+           let left = Math.max(16, Math.min(window.innerWidth - cardW - 16, clickX - cardW / 2));
+           let top = Math.max(16, Math.min(window.innerHeight - cardH - 16, clickY - cardH / 2));
+           rect = { top: top, left: left, width: cardW, height: cardH };
+         }
+
+         if (!imageUrl || imageUrl.includes('none') || imageUrl.length < 5) {
+           let m = clickedSlideStr.match(/slide-(\d+)/i);
+           let sNum = m ? m[1] : '1';
+           imageUrl = `/assets/all-works-mobile-carousel/slide-${sNum}.jpg`;
+         }
+
          window.parent.postMessage({ type: 'PROJECT_CLICK', slug: clickedSlideStr, label: 'Project', rect, imageUrl }, '*');
-    
       }
     }, true);
   })();
